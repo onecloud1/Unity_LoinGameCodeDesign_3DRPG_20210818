@@ -1506,6 +1506,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8700279360194132377, guid: 191d23f15034e6b429edec9ee7a9e1e9, type: 3}
   m_PrefabInstance: {fileID: 4950160459728017719}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1895859019 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ba8ea1abd3f702a41b81610c3403170e, type: 3}
+  m_PrefabInstance: {fileID: 1731247606}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1895859020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895859019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8315efb8ff98a874da87c671611a4371, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10.5
+  jump: 32
+  groundCheck: 0
+  groundDisplacement: {x: 0, y: 0, z: 0}
+  groundRadius: 0.2
+  jumpSound: {fileID: 0}
+  downSound: {fileID: 0}
+  animatroParWalk: Play_walk
+  animatroParRun: Player_run
+  animatroParHurt: Player_hurt
+  animatroParDead: Player_death
+  soundSource: {fileID: 0}
+  rig: {fileID: 0}
+  anim: {fileID: 0}
 --- !u!4 &1993536492 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5845077822282171100, guid: b42bda7684b36cf4ca78a51be1589365, type: 3}
