@@ -91,7 +91,7 @@ public class ThirdPersonConteroller : MonoBehaviour
     public string animatroParHurt = "Player_hurt";
     public string animatroParDead = "Player_death";
 
-    public AudioSource soundSource;
+    public AudioSource aud;
     public Rigidbody rig;
     public Animator anim;
 
@@ -239,10 +239,10 @@ public class ThirdPersonConteroller : MonoBehaviour
         return weight / (height * height);
     }
 
- 
+    public GameObject platerObject;
     void Start() // 開始執行一次
     {
-
+        #region
         print(BMI(70, 1.75f, "WEI"));
 
         #region 輸出方法
@@ -282,6 +282,13 @@ public class ThirdPersonConteroller : MonoBehaviour
         Skill(300);
         Skill(999,"爆炸特效");
         Skill(500, sound:"咻咻咻");
+        #endregion
+        // 物件欄位名稱.取得元件(類型(元件類型)) 當作 元件類型
+        aud = platerObject.GetComponent(typeof(AudioSource)) as AudioSource;
+        //    此腳本遊戲物件.取得元件<泛型>()
+        rig = gameObject.GetComponent<Rigidbody>();
+        // 取得元件
+        anim = GetComponent<Animator>();
 
     }
     // 更新事件：約一秒執行60次
