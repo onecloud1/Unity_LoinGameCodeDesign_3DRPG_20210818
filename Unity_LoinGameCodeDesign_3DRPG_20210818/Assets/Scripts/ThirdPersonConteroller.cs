@@ -91,9 +91,9 @@ public class ThirdPersonConteroller : MonoBehaviour
     public string animatroParHurt = "Player_hurt";
     public string animatroParDead = "Player_death";
 
-    public AudioSource aud;
-    public Rigidbody rig;
-    public Animator anim;
+    private AudioSource aud;
+    private Rigidbody rig;
+    private Animator anim;
 
     #region Unity 資料類型
     /** 練習 Unity 資料類型
@@ -206,6 +206,22 @@ public class ThirdPersonConteroller : MonoBehaviour
         print("參數版本 - 音效" + sound);
     }
 
+    //移動 speedMove移動速度
+    private void Move(float speedMove)
+    {   //鋼體.加速度 = 新三維向量 用加速度控制
+        //使用前後左右軸向運動且保持原本地心引力
+        rig.velocity =
+            Vector3.forward * MoveInput("Vertical") * speedMove +
+            Vector3.right * MoveInput("Horizontal") * speedMove +
+            Vector3.up * rig.velocity.y;
+        
+    }
+    // 移動按鍵輸入 asisName移動按鍵值
+    private float MoveInput(string asisName)
+    {
+        return Input.GetAxis(asisName);
+    }
+
     //對照組 不使用參數↓
     /**對照組
     private void Skill100()
@@ -295,8 +311,46 @@ public class ThirdPersonConteroller : MonoBehaviour
     // 處理持續性運動.移動物件.監聽玩家輸入按鍵
     void Update() 
     {
+        CheckGround();
+        Jump();
+    }
+    // 0.002秒執行一次
+    void FixedUpdate()
+    {
+        Move(speed);
+    }
+    //繪製圖示事件
+    //1.指定顏色
+    //2.繪製圖形
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = new Color(1, 0, 0.2f, 0.3f);
 
+        Gizmos.DrawSphere(
+            transform.position +
+            transform.right * groundDisplacement.x +
+            transform.up * groundDisplacement.y +
+            transform.forward * groundDisplacement.z,
+            groundRadius);
     }
 
+    private bool CheckGround()
+    {
+        Collider[] hits = Physics.OverlapSphere(
+            transform.position +
+            transform.right * groundDisplacement.x +
+            transform.up * groundDisplacement.y +
+            transform.forward * groundDisplacement.z,
+            groundRadius, 1 << 3);
+
+        //Debug.Log("球體第一個碰到的物件" + hits[0].name);
+        //傳回碰撞陣列數量 > 0 只要碰到指定圖層就代表在地面上
+        return hits.Length > 0;      
+    }
+
+    private void Jump()
+    {
+        Debug.Log("是否在地面上" + CheckGround());
+    }
     #endregion
 }
