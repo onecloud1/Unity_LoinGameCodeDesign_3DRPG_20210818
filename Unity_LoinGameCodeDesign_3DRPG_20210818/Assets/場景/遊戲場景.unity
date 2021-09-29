@@ -1437,7 +1437,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 0.6603774, g: 0.6198825, b: 0.6198825, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -1924,16 +1924,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10.5
-  jump: 32
-  groundCheck: 0
+  jump: 250
+  Isground: 0
   groundDisplacement: {x: 0, y: 0, z: 0}
   groundRadius: 0.2
   jumpSound: {fileID: 0}
   downSound: {fileID: 0}
-  animatroParWalk: Play_walk
-  animatroParRun: Player_run
-  animatroParHurt: Player_hurt
-  animatroParDead: Player_death
+  animatroParWalk: Walk
+  animatroParRun: Run
+  animatroParHurt: hurt
+  animatroParDead: death
+  animatroParJump: jump
+  animatroParIsGround: checkground
   platerObject: {fileID: 1895859019}
 --- !u!82 &1895859021
 AudioSource:

@@ -9,51 +9,51 @@ using UnityEngine.Video;
 
 public class ThirdPersonConteroller : MonoBehaviour
 {
-    
-     /** 課堂練習 控制器方法
 
-    // 摺疊 Cart + M O  展開 Cart + M L
-    /// <summary>
-    /// 移動
-    /// </summary>
-    /// <param name="moveSpeed">移動速度</param>
-    private void move(float moveSpeed)
-    {
-        
-    }
-    /// <summary>
-    /// 移動按鍵輸入
-    /// </summary>
-    /// <returns>移動按鍵值</returns>
-    private float moveKey()
-    {
-        return 0f;
-    }
-    /// <summary>
-    /// 檢查地板
-    /// </summary>
-    /// <returns>是否碰到地板</returns>
-    private bool groundCheck()
-    {
-        return false;
-    }
-    /// <summary>
-    /// 跳躍
-    /// </summary>
-    private void jump()
-    {
+    /** 課堂練習 控制器方法
 
-    }
-    /// <summary>
-    /// 更新動畫
-    /// </summary>
-    private void animationUpdate()
-    {
+   // 摺疊 Cart + M O  展開 Cart + M L
+   /// <summary>
+   /// 移動
+   /// </summary>
+   /// <param name="moveSpeed">移動速度</param>
+   private void move(float moveSpeed)
+   {
+       
+   }
+   /// <summary>
+   /// 移動按鍵輸入
+   /// </summary>
+   /// <returns>移動按鍵值</returns>
+   private float moveKey()
+   {
+       return 0f;
+   }
+   /// <summary>
+   /// 檢查地板
+   /// </summary>
+   /// <returns>是否碰到地板</returns>
+   private bool groundCheck()
+   {
+       return false;
+   }
+   /// <summary>
+   /// 跳躍
+   /// </summary>
+   private void jump()
+   {
 
-    }
+   }
+   /// <summary>
+   /// 更新動畫
+   /// </summary>
+   private void animationUpdate()
+   {
 
-    **/
-    
+   }
+
+   **/
+
 
 
 
@@ -70,14 +70,20 @@ public class ThirdPersonConteroller : MonoBehaviour
     // 欄位屬性 Attribute：輔助欄位資料
     // 欄位屬性與法：[屬性名稱(屬性值)]
     //Header標題 Tooltip滑鼠停留提示 Range範圍
+    private AudioSource aud;
+    private Rigidbody rig;
+    private Animator anim;
+
+    
+
     [Header("移動速度"), Tooltip("用來調整角色移動速度"), Range(0,500)]
     public float speed = 10.5f;
 
     [Header("跳躍高度"), Range(0, 1000)]
-    public float jump = 100f;
+    public int jump = 100;
 
     [Header("是否在地板上"), Tooltip("角色是否踩在地板上")]
-    public bool groundCheck = false;
+    public bool Isground = false;
     public Vector3 groundDisplacement;
     public float groundRadius = 0.2f;
     
@@ -86,14 +92,13 @@ public class ThirdPersonConteroller : MonoBehaviour
     public AudioClip downSound;
 
     [Header("動畫參數")]
-    public string animatroParWalk ="Play_walk";
-    public string animatroParRun = "Player_run";
-    public string animatroParHurt = "Player_hurt";
-    public string animatroParDead = "Player_death";
+    public string animatroParWalk = "Walk";
+    public string animatroParRun = "Run";
+    public string animatroParHurt = "hurt";
+    public string animatroParDead = "death";
+    public string animatroParJump = "jump";
+    public string animatroParIsGround = "checkground";
 
-    private AudioSource aud;
-    private Rigidbody rig;
-    private Animator anim;
 
     #region Unity 資料類型
     /** 練習 Unity 資料類型
@@ -173,7 +178,7 @@ public class ThirdPersonConteroller : MonoBehaviour
     }
     */
 
-    public KeyCode KeyJump { get; }
+    private bool KeyJump { get => Input.GetKeyDown(KeyCode.Space); }
 
     #endregion
 
@@ -311,8 +316,8 @@ public class ThirdPersonConteroller : MonoBehaviour
     // 處理持續性運動.移動物件.監聽玩家輸入按鍵
     void Update() 
     {
-        CheckGround();
         Jump();
+        UpdataAnimation();
     }
     // 0.002秒執行一次
     void FixedUpdate()
@@ -345,12 +350,36 @@ public class ThirdPersonConteroller : MonoBehaviour
 
         //Debug.Log("球體第一個碰到的物件" + hits[0].name);
         //傳回碰撞陣列數量 > 0 只要碰到指定圖層就代表在地面上
+
+        Isground = hits.Length > 0;
+
         return hits.Length > 0;      
     }
 
     private void Jump()
     {
         Debug.Log("是否在地面上" + CheckGround());
+        // &&=並且
+        //如果在地面上 並且 按下空白鍵就跳躍
+        if(CheckGround() && KeyJump)
+        {
+            rig.AddForce(transform.up * jump);
+        }
+
     }
+
+    private void UpdataAnimation()
+    {
+        if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
+        {
+            anim.SetBool(animatroParWalk, true);
+        } else
+        anim.SetBool(animatroParWalk, false);
+
+        anim.SetBool(animatroParIsGround, Isground);
+
+        if (KeyJump) anim.SetTrigger(animatroParJump);
+    }
+
     #endregion
 }
