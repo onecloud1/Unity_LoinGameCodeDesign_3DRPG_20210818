@@ -41,6 +41,10 @@ public class ThirdPersonConteroller : MonoBehaviour
     public string animatroParJump = "jump";
     public string animatroParIsGround = "checkground";
 
+    public GameObject platerObject;
+    private ThirdPersonCamera thirdPersonCamera;
+
+
     #endregion
 
     #region 屬性 Property 
@@ -68,8 +72,8 @@ public class ThirdPersonConteroller : MonoBehaviour
     {   //鋼體.加速度 = 新三維向量 用加速度控制
         //使用前後左右軸向運動且保持原本地心引力
         rig.velocity =
-            Vector3.forward * MoveInput("Vertical") * speedMove +
-            Vector3.right * MoveInput("Horizontal") * speedMove +
+            transform.forward * MoveInput("Vertical") * speedMove +
+            transform.right * MoveInput("Horizontal") * speedMove +
             Vector3.up * rig.velocity.y;
         
     }
@@ -78,13 +82,25 @@ public class ThirdPersonConteroller : MonoBehaviour
     {
         return Input.GetAxis(asisName);
     }
+    [Header("面相速度")]
+    public float speedLookAt = 2;
+    //垂直軸向大於0.1 就處理 面向
+    private void LookAtForward()
+    {
+        if (MoveInput("Vertical") > 0.1f)
+        {
+            Quaternion angle = Quaternion.LookRotation(thirdPersonCamera.posForward - transform.position);
+            transform.rotation = Quaternion.Lerp(transform.rotation, angle, Time.deltaTime * speedLookAt);
+        }
+    }
 
    
     #endregion
 
     #region 事件 Event
    
-    public GameObject platerObject;
+    
+
     void Start() // 開始執行一次
     {      
         // 物件欄位名稱.取得元件(類型(元件類型)) 當作 元件類型
@@ -94,11 +110,15 @@ public class ThirdPersonConteroller : MonoBehaviour
         // 取得元件
         anim = GetComponent<Animator>();
 
+        //攝影機類別 = 透過類型尋找物件<泛型>(); 需要實體物件
+        //FindObjectOfType不要再updata用,會過大負擔 
+        thirdPersonCamera = FindObjectOfType<ThirdPersonCamera>();
     }
     void Update() 
     {
         Jump();
         UpdataAnimation();
+        LookAtForward();
     }
     // 0.002秒執行一次
     void FixedUpdate()
@@ -160,7 +180,9 @@ public class ThirdPersonConteroller : MonoBehaviour
         anim.SetBool(animatroParIsGround, Isground);
 
         if (KeyJump) anim.SetTrigger(animatroParJump);
-    }
+        
 
+
+    }
     #endregion
 }
