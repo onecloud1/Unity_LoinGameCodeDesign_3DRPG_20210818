@@ -1508,10 +1508,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1895859025}
-  speedTrack: 5
+  speedTrack: 10
   speedTurnHorizontal: 100
-  speedTurnVertical: 50
+  speedTurnVertical: 100
   limitAngleX: {x: -0.2, y: 0.2}
+  limitAngleFromTarget: {x: -0.2, y: 0}
   _posForward: {x: 100, y: 0, z: 73}
 --- !u!1001 &1693115345
 PrefabInstance:

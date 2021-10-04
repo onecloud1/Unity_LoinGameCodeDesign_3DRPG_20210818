@@ -15,6 +15,8 @@ public class ThirdPersonCamera : MonoBehaviour
     public float speedTurnVertical = 5;
     [Header("X 軸上下旋轉限制")]
     public Vector2 limitAngleX = new Vector2(-0.2f, 0.2f);
+    [Header("攝影機在角色前方上下選轉限制:最大值 最小值")]
+    public Vector2 limitAngleFromTarget = new Vector2(-0.2f, 0);
 
     //攝影機前方座標
     public Vector3 _posForward;
@@ -93,7 +95,8 @@ public class ThirdPersonCamera : MonoBehaviour
     #region 限制上下旋轉角度 X軸
     {
         Quaternion angle = transform.rotation; // 取得四位元角度
-        angle.x = Mathf.Clamp(angle.x, limitAngleX.x, limitAngleX.y); //夾住角度 X 軸
+        angle.x = Mathf.Clamp(angle.x, limitAngleX.x, limitAngleX.y);//夾住角度 X 軸
+        angle.z = Mathf.Clamp(angle.z, limitAngleFromTarget.x, limitAngleFromTarget.y); //夾住角度 Z 軸 攝影機在目標前方
         transform.rotation = angle; //更新物件角度
     }
 
