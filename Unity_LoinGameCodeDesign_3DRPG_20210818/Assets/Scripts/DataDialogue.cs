@@ -22,6 +22,8 @@ namespace WEI.Dialogue
         public int countNeed;
         [Header("NPC 任務狀態")]
         public StateNPCMission StateNPCMission = StateNPCMission.BeforeMission;
+        [Header("對話的NPC名稱")]
+        public string nameDialogue;
     }
     //陣列: 保存相同資料類型的結構
 }

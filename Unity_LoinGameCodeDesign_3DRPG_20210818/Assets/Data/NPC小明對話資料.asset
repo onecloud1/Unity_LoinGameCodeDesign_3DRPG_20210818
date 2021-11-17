@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "NPC\u5C0F\u660E\u5C0D\u8A71\u8CC7\u6599"
   m_EditorClassIdentifier: 
   beforeMission:
-  - "\u73A9\u5BB6\u4F60\u597D\uFF0C"
+  - "\u73A9\u5BB6\u4F60\u597D"
   - "\u8ACB\u554F\u53EF\u4EE5\u7D66\u6211\u5341\u500B\u6750\u6599\u55CE?"
   missionning:
   - "\u9700\u6C42\u6BD4\u8F03\u591A"
@@ -23,3 +23,4 @@ MonoBehaviour:
   - "\u975E\u5E38\u611F\u8B1D\u4F60"
   countNeed: 10
   StateNPCMission: 0
+  nameDialogue: "\u5C0F\u660E"

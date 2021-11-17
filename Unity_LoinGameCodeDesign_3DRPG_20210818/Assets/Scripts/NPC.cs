@@ -58,10 +58,11 @@ namespace WEI.Dialogue
 
         private void StartDialogue()
         {
-            if(CheckPlayer() && startDialogueKey)
+            if (CheckPlayer() && startDialogueKey)
             {
                 dialogueSystem.Dialogue(dataDialogue);
             }
+            else if (!CheckPlayer()) dialogueSystem.StopDialogue();
         }
     }
 
