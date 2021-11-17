@@ -157,7 +157,7 @@ public class ThirdPersonConteroller : MonoBehaviour
 
     private void Jump()
     {
-        Debug.Log("是否在地面上" + CheckGround());
+        //Debug.Log("是否在地面上" + CheckGround());
         // &&=並且
         //如果在地面上 並且 按下空白鍵就跳躍
         if(CheckGround() && KeyJump)

@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 1cc2124927748e94e82c1f53179a4c5d, type: 2}
 --- !u!1001 &12861501
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -338,6 +338,22 @@ PrefabInstance:
     - target: {fileID: 1000010922001086, guid: f38205ce7c90f6b44854e3ce06c8f473, type: 3}
       propertyPath: m_Name
       value: FAE_Willow_B
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000011449315308, guid: f38205ce7c90f6b44854e3ce06c8f473, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000011449315308, guid: f38205ce7c90f6b44854e3ce06c8f473, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013639979900, guid: f38205ce7c90f6b44854e3ce06c8f473, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013639979900, guid: f38205ce7c90f6b44854e3ce06c8f473, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967291
       objectReference: {fileID: 0}
     - target: {fileID: 4000010488910788, guid: f38205ce7c90f6b44854e3ce06c8f473, type: 3}
       propertyPath: m_LocalScale.x
@@ -701,6 +717,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: House_C
       objectReference: {fileID: 0}
+    - target: {fileID: 1428399912678062, guid: ee91d11515ae6b84c999aa73def68482, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1428399912678062, guid: ee91d11515ae6b84c999aa73def68482, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4019208303192770, guid: ee91d11515ae6b84c999aa73def68482, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -932,7 +956,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4215789226532830, guid: 7f931d4b5c97d194d8726ddf5acdd440, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 77.976875
+      value: 96.7
       objectReference: {fileID: 0}
     - target: {fileID: 4215789226532830, guid: 7f931d4b5c97d194d8726ddf5acdd440, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3087,6 +3111,28 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1783563462218004, guid: 7f931d4b5c97d194d8726ddf5acdd440, type: 3}
   m_PrefabInstance: {fileID: 561605011}
   m_PrefabAsset: {fileID: 0}
+--- !u!195 &2078762486
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078762485}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!136 &2078762488
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3115,8 +3161,29 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &2078762490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078762485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e014f7bf65b463a459ccb71bee5db742, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2.5
+  attack: 35
+  rangeattack: 5
+  rangeTrack: 15
+  v2RandomWait: {x: 1, y: 5}
+  v2RandomWalk: {x: 3, y: 7}
+  v3AttackOffset: {x: 0, y: 1, z: 2.5}
+  v3AttackSize: {x: 2.5, y: 2, z: 2}
+  state: 0
 --- !u!4 &2094875074 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5845077822282171100, guid: b42bda7684b36cf4ca78a51be1589365, type: 3}
