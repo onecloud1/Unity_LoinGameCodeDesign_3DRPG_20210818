@@ -53,18 +53,23 @@ namespace WEI.Dialogue
 
         private IEnumerator ShowDialogueContent(DataDialogue data)
         {
-            
+            textContent.text = ""; //每次跑下段對話清除內容
+            textName.text = data.nameDialogue;
+
+            string[] dialogueCountents = data.beforeMission;
+
             //遍尋每一段對話
-            for (int j = 0; j < data.beforeMission.Length; j++)
+            for (int j = 0; j < dialogueCountents.Length; j++)
             {
                 textContent.text = ""; //每次跑下段對話清除內容
                 textName.text = data.nameDialogue;
+
                 goTriangle.SetActive(false); //隱藏右下閃爍提示
 
                 //遍尋對話每一個字
-                for (int i = 0; i < data.beforeMission[j].Length; i++)
+                for (int i = 0; i < dialogueCountents.Length; i++)
                 {
-                    textContent.text += data.beforeMission[j][i];
+                    textContent.text += dialogueCountents[j][i];
                     yield return new WaitForSeconds(dialogueInterval);
                 }
 

@@ -12,7 +12,7 @@ namespace WEI
 
         private float hpeffectOriginal;
         // 複寫父類別成員 override
-        public override void Hurt(float damage)
+        public override bool Hurt(float damage)
         {
             hpeffectOriginal = hp;
 
@@ -20,6 +20,8 @@ namespace WEI
             base.Hurt(damage);
 
             StartCoroutine(HpBarEffect());
+
+            return hp <= 0;
         }
 
         private IEnumerator HpBarEffect()

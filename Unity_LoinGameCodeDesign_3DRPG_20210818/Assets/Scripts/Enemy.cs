@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using WEI.Dialogue;
 
 namespace WEI.Enemy
 {
@@ -22,6 +23,11 @@ namespace WEI.Enemy
         [Header("攻擊區域位移與尺寸")]
         public Vector3 v3AttackOffset;
         public Vector3 v3AttackSize = Vector3.one;
+        [Header("NPC名稱")]
+        public string nameNPC = "NPC小明";
+
+        private NPC npc;
+        private HurtSystem hurtSystem;
 
         //是否等待等等...狀態
         private bool isIdle;
@@ -36,6 +42,9 @@ namespace WEI.Enemy
         private bool isAttack;
         [Header("攻擊延遲傳送傷害時間"), Range(0, 5)]
         public float delaySenDamage = 0.5f;
+        [Header("面相玩家速度"), Range(0, 50)]
+        public float speedLookAt = 10;
+
 
         private NavMeshAgent nma;
 
@@ -50,14 +59,19 @@ namespace WEI.Enemy
 
         [SerializeField]
         private StateEnemy state;
+        private bool targetIsDead;
 
         private void Awake()
         {
             anim = GetComponent<Animator>();
             nma = GetComponent<NavMeshAgent>();
             nma.speed = speed;
+            hurtSystem = GetComponent<HurtSystem>();
 
             traPlayer = GameObject.Find(namePlayer).transform;
+            npc = GameObject.Find(nameNPC).GetComponent<NPC>();
+
+            hurtSystem.onDead.AddListener(npc.UpdateMissionCount);
 
             nma.SetDestination(transform.position);              //導覽器
         }
@@ -125,7 +139,7 @@ namespace WEI.Enemy
         
         private void Idle()
         {
-            if (playerInTrackRange) state = StateEnemy.Track; //如果玩家進入 追蹤範圍 切換成追蹤狀態
+            if (!targetIsDead && playerInTrackRange) state = StateEnemy.Track; //如果玩家進入 追蹤範圍 切換成追蹤狀態
 
             //進入條件
             if (isIdle) return;
@@ -148,7 +162,7 @@ namespace WEI.Enemy
 
         private void Walk()
         {
-            if (playerInTrackRange) state = StateEnemy.Track; //如果玩家進入 追蹤範圍 切換成追蹤狀態
+            if (!targetIsDead && playerInTrackRange) state = StateEnemy.Track; //如果玩家進入 追蹤範圍 切換成追蹤狀態
 
             //代理器.設定目的地(座標)
             nma.SetDestination(v3RandomWalkFinal);
@@ -185,7 +199,7 @@ namespace WEI.Enemy
         /// </summary>
         private bool isTrack;
         private void Track()
-        {
+        {         
             if(!isTrack)
             {
                 StopAllCoroutines();
@@ -232,17 +246,26 @@ namespace WEI.Enemy
                 v3AttackSize / 2, Quaternion.identity, 1 << 6);
 
             //如果 碰撞物件數量大於 零 . 傳送攻擊力給碰撞物件的受傷系統
-            if (hits.Length > 0) hits[0].GetComponent<HurtSystem>().Hurt(attack);
+            if (hits.Length > 0) targetIsDead = hits[0].GetComponent<HurtSystem>().Hurt(attack);
+            if (targetIsDead) TargetDead();
 
             float waitToNextAttack = timeAttack - delaySenDamage;     //計算剩餘冷卻時間
             yield return new WaitForSeconds(waitToNextAttack);        //等待
 
             isAttack = false;                                         //恢復 攻擊狀態
         }
+        /// <summary>
+        /// 目標死亡
+        /// </summary>
+        private void TargetDead()
+        {
+            state = StateEnemy.Walk;
+            isIdle = false;
+            isWalk = false;
+            nma.isStopped = false;
+        }
 
-
-        [Header("面相玩家速度"), Range(0, 50)]
-        public float speedLookAt = 10;
+        
 
         private void LookAtPlayer()
         {

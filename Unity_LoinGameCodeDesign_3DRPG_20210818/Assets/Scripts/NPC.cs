@@ -16,6 +16,8 @@ namespace WEI.Dialogue
         public GameObject goTip;
         public float speedLookAt = 4;
 
+
+        private int countCurrent; //目前任務數量
         private Transform target;
 
         private bool startDialogueKey { get => Input.GetKeyDown(KeyCode.E); }
@@ -36,6 +38,13 @@ namespace WEI.Dialogue
             goTip.SetActive(CheckPlayer());
             LookAtPlayer();
             StartDialogue();
+        }
+
+        public void UpdateMissionCount()
+        {
+            countCurrent++;
+            
+            if (countCurrent == dataDialogue.countNeed) dataDialogue.StateNPCMission = StateNPCMission.AfterMission;
         }
 
         private bool CheckPlayer()
