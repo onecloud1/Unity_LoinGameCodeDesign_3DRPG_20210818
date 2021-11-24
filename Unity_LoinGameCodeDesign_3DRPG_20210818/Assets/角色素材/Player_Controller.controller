@@ -62,7 +62,7 @@ AnimatorStateMachine:
     m_Position: {x: -190, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8874390083046645397}
-    m_Position: {x: -130, y: 230, z: 0}
+    m_Position: {x: -160, y: 270, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: -7227599624620410170}
@@ -116,7 +116,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "\u653B\u64CA\u89F8\u767C"
+    m_ConditionEvent: atk
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: death
@@ -402,7 +402,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: "\u653B\u64CA\u89F8\u767C"
+  - m_Name: atk
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
