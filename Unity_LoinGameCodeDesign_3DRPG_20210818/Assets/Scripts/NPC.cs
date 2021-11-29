@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.Events;
 namespace WEI.Dialogue
 {
     /// <summary>
@@ -24,6 +24,9 @@ namespace WEI.Dialogue
 
         [Header("對話系統")]
         public DialogueSystem dialogueSystem;
+
+        [Header("完成任務事件")]
+        public UnityEvent onFinish;
 
         #endregion
 
@@ -56,8 +59,12 @@ namespace WEI.Dialogue
         public void UpdateMissionCount()
         {
             countCurrent++;
-            
-            if (countCurrent == dataDialogue.countNeed) dataDialogue.StateNPCMission = StateNPCMission.AfterMission;
+
+            if (countCurrent == dataDialogue.countNeed)
+            {
+                dataDialogue.StateNPCMission = StateNPCMission.AfterMission;
+                onFinish.Invoke();
+            }
         }
 
         private bool CheckPlayer()

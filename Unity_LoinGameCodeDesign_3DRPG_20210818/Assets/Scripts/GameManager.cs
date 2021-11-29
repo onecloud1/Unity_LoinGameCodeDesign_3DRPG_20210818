@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 namespace WEI
 {
@@ -18,5 +19,31 @@ namespace WEI
 
         private string titleWin = "You Win";
         private string titleLose = "You Failed";
+
+        /// <summary>
+        /// 開始淡入最後介面
+        /// </summary>
+        /// <param name="win">是否獲勝</param>
+        public void StatFadeFinalUI(bool win)
+        {
+            StartCoroutine(FadeFinalUI(win ? titleWin : titleLose));
+        }
+
+        /// <summary>
+        /// 淡入結束畫面
+        /// </summary>
+        /// <param name="title"></param>
+        private IEnumerator FadeFinalUI(string title)
+        {
+            textTitle.text = title;
+            groupFinal.interactable = true;
+            groupFinal.blocksRaycasts = true;
+
+            for(int i =0; i < 10; i++)
+            {
+                groupFinal.alpha += 0.1f;
+                yield return new WaitForSeconds(0.02f);
+            }
+        }
     }
 }

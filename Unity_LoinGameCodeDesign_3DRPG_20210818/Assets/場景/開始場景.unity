@@ -159,7 +159,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -320, y: -83.16}
+  m_AnchoredPosition: {x: -35, y: -72}
   m_SizeDelta: {x: 518.4659, y: 166.3199}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &172629664
@@ -205,7 +205,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 172629665}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 413729584}
+        m_TargetAssemblyTypeName: WEI.SceneContoroller, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: "\u904A\u6232\u5834\u666F"
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &172629665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,6 +256,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 172629662}
   m_CullTransparentMesh: 1
+--- !u!1001 &413729583
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3313848743113490000, guid: dd23530b3e31b5b418dc4a97d7aacd02, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3313848743113490000, guid: dd23530b3e31b5b418dc4a97d7aacd02, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 988.8249
+      objectReference: {fileID: 0}
+    - target: {fileID: 3313848743113490000, guid: dd23530b3e31b5b418dc4a97d7aacd02, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 635.0526
+      objectReference: {fileID: 0}
+    - target: {fileID: 3313848743113490000, guid: dd23530b3e31b5b418dc4a97d7aacd02, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -137.39021
+      objectReference: {fileID: 0}
+    - target: {fileID: 3313848743113490000, guid: dd23530b3e31b5b418dc4a97d7aacd02, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3313848743113490000, guid: dd23530b3e31b5b418dc4a97d7aacd02, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3313848743113490000, guid: dd23530b3e31b5b418dc4a97d7aacd02, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3313848743113490000, guid: dd23530b3e31b5b418dc4a97d7aacd02, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3313848743113490000, guid: dd23530b3e31b5b418dc4a97d7aacd02, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3313848743113490000, guid: dd23530b3e31b5b418dc4a97d7aacd02, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3313848743113490000, guid: dd23530b3e31b5b418dc4a97d7aacd02, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3313848743113490002, guid: dd23530b3e31b5b418dc4a97d7aacd02, type: 3}
+      propertyPath: m_Name
+      value: "\u5834\u666F\u63A7\u5236\u5668"
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dd23530b3e31b5b418dc4a97d7aacd02, type: 3}
+--- !u!114 &413729584 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3313848743113490001, guid: dd23530b3e31b5b418dc4a97d7aacd02, type: 3}
+  m_PrefabInstance: {fileID: 413729583}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66ef70f80efc41842a098f954ee8b9a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &708834717
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,7 +453,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -320, y: -388}
+  m_AnchoredPosition: {x: -35, y: -367}
   m_SizeDelta: {x: 518.4659, y: 166.3199}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &785285121
@@ -419,7 +499,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 785285122}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 413729584}
+        m_TargetAssemblyTypeName: WEI.SceneContoroller, Assembly-CSharp
+        m_MethodName: Quit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &785285122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -671,7 +763,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1280, y: 720}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -758,7 +850,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.104}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -336, y: 391}
+  m_AnchoredPosition: {x: -28, y: 330}
   m_SizeDelta: {x: 466.3893, y: 67.79}
   m_Pivot: {x: 0.42554313, y: 0.5277927}
 --- !u!114 &1319625380
@@ -935,7 +1027,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -210, y: -41.508}
+  m_AnchoredPosition: {x: -210, y: -41.508057}
   m_SizeDelta: {x: 1446.5647, y: 1015.0369}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1890974628
