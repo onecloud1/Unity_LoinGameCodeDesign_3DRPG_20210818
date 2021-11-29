@@ -21,6 +21,6 @@ MonoBehaviour:
   afterMission:
   - "\u9019\u5C31\u662F\u6211\u8981\u7684"
   - "\u975E\u5E38\u611F\u8B1D\u4F60"
-  countNeed: 10
-  StateNPCMission: 0
+  countNeed: 1
+  StateNPCMission: 1
   nameDialogue: "\u5C0F\u660E"

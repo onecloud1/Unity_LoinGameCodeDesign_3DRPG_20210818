@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Events;
 
 namespace WEI
 {
@@ -22,7 +23,13 @@ namespace WEI
 
         [Header("攻擊動畫參數")]
         public string parameterAttack = "攻擊圖層觸發";
+        public string parameterWalk = "Walk";
         private bool isAttack;
+        [Header("攻擊事件")]
+        public UnityEvent onAttack;
+        [Header("攻擊圖層遮色片")]
+        public AvatarMask maskAttack;
+
 
         private Animator anim;
         private bool keyAttack { get => Input.GetKeyDown(KeyCode.Mouse0); }      
@@ -52,8 +59,21 @@ namespace WEI
 
         private void Attack()
         {
-            if(keyAttack && !isAttack)
+            
+                #region 攻擊圖層遮色片處理
+                bool isWalk = anim.GetBool(parameterWalk);
+
+                //左腳.右腳.左右腳IK與根部
+                maskAttack.SetHumanoidBodyPartActive(AvatarMaskBodyPart.LeftLeg, !isWalk);
+                maskAttack.SetHumanoidBodyPartActive(AvatarMaskBodyPart.RightLeg, !isWalk);
+                maskAttack.SetHumanoidBodyPartActive(AvatarMaskBodyPart.LeftFootIK, !isWalk);
+                maskAttack.SetHumanoidBodyPartActive(AvatarMaskBodyPart.RightFootIK, !isWalk);
+                maskAttack.SetHumanoidBodyPartActive(AvatarMaskBodyPart.Root, !isWalk);
+            #endregion
+
+            if (keyAttack && !isAttack)
             {
+                onAttack.Invoke();
                 isAttack = true;
                 anim.SetTrigger(parameterAttack);
                 StartCoroutine(DelayHit());

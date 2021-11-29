@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace WEI.Dialogue
@@ -19,6 +20,9 @@ namespace WEI.Dialogue
         public float dialogueInterval = 0.3f;
         [Header("對話間隔")]
         public KeyCode dialogueKey = KeyCode.Z;
+        [Header("打字系統")]
+        public UnityEvent onType;
+
 
         //呼叫協同程序 開始對話
         public void Dialogue(DataDialogue data)
@@ -56,7 +60,22 @@ namespace WEI.Dialogue
             textContent.text = ""; //每次跑下段對話清除內容
             textName.text = data.nameDialogue;
 
-            string[] dialogueCountents = data.beforeMission;
+            #region 處理狀態與對話資料
+            string[] dialogueCountents = { };  //儲存 對話內容
+
+            switch (data.StateNPCMission)
+            {
+                case StateNPCMission.BeforeMission:
+                    dialogueCountents = data.beforeMission;
+                    break;
+                case StateNPCMission.Missionning:
+                    dialogueCountents = data.missionning;
+                    break;
+                case StateNPCMission.AfterMission:
+                    dialogueCountents = data.afterMission;
+                    break;
+            }
+            #endregion
 
             //遍尋每一段對話
             for (int j = 0; j < dialogueCountents.Length; j++)
@@ -67,8 +86,9 @@ namespace WEI.Dialogue
                 goTriangle.SetActive(false); //隱藏右下閃爍提示
 
                 //遍尋對話每一個字
-                for (int i = 0; i < dialogueCountents.Length; i++)
+                for (int i = 0; i < dialogueCountents[j].Length; i++)
                 {
+                    onType.Invoke();
                     textContent.text += dialogueCountents[j][i];
                     yield return new WaitForSeconds(dialogueInterval);
                 }
